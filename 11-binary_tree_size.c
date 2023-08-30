@@ -17,17 +17,5 @@ if (!tree)
 return 0;
 }
 
-while (leftNodes)
-{
-size++;
-leftNodes= leftNodes->left;
-}
-
-while (rightNodes)
-{
-size++;
-rightNodes = rightNodes->right;
-}
-
-return (size);
+return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
 }
