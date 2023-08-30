@@ -12,7 +12,7 @@ if (!tree)
 return (0);
 
 if (tree->left != NULL || tree->right != NULL)
-return (1 + binary_tree_leaves(tree->left) + binary_tree_leaves(tree->right));
+return (1 + binary_tree_nodes(tree->left) + binary_tree_nodes(tree->right));
 
 return (0);
 }
