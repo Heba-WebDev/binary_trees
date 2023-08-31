@@ -43,7 +43,7 @@ return (1);
 }
 else
 {
-return (x * _pow_recursion(x, y - 1));
+return (x * pow_helper_func(x, y - 1));
 }
 }
 
