@@ -8,58 +8,18 @@
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-size_t height = 0;
-size_t nodes = 0;
-size_t power = 0;
+int height, nodes, num_nodes;
 
-if (!tree)
-return (0);
-
-if (!tree->right && !tree->left)
-return (1);
-
+if (tree)
+{
 height = binary_tree_height(tree);
-nodes = binary_tree_size(tree);
+nodes = binary_tree_leaves(tree);
 
-power = (size_t)pow_helper_func(2, height + 1);
-return (power - 1 == nodes);
-}
-
-/**
- * pow_helper_func - calculate exponents
- * @x: the number
- * @y: the power to raise x to
- * Return: x to the power of y or 0 if y is negative
- */
-
-int pow_helper_func(int x, int y)
-{
-if (y < 0)
-return (-1);
-
-if (y == 0)
-{
+num_nodes = (int) (1 << height);
+if (nodes == num_nodes)
 return (1);
 }
-else
-{
-return (x * pow_helper_func(x, y - 1));
-}
-}
-
-
-/**
- * binary_tree_size - measures the size of a binary tree
- * @tree: the tree to measure its size
- * Return: If tree is NULL, the function must return 0
- */
-
-size_t binary_tree_size(const binary_tree_t *tree)
-{
-if (!tree)
 return (0);
-
-return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
 }
 
 
@@ -68,7 +28,6 @@ return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
  * @tree: the tree to measure its height
  * Return: If tree is NULL, your function must return 0
  */
-
 
 size_t binary_tree_height(const binary_tree_t *tree)
 {
@@ -82,4 +41,32 @@ leftNodes = tree->left ? 1 + binary_tree_height(tree->left) : 0;
 rightNodes = tree->right ? 1 + binary_tree_height(tree->right) : 0;
 
 return (leftNodes > rightNodes ? leftNodes : rightNodes);
+
+}
+
+/**
+ * binary_tree_nodes - number of nodes
+ * @tree: the tree to count its nodes
+ * Return: size of tree
+ */
+
+size_t binary_tree_nodes(const binary_tree_t *tree)
+{
+int nodes = 0;
+
+if (tree)
+{
+if (tree->left)
+nodes += binary_tree_leaves(tree->left);
+
+if (tree->right)
+nodes += binary_tree_leaves(tree->right);
+
+if (tree->left == tree->right)
+return (++nodes);
+
+return (nodes);
+}
+
+return (0);
 }
