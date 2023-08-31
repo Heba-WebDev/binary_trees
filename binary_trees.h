@@ -57,4 +57,8 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tr
 binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree);
 binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree);
 
+
+/* Helper Function */
+size_t binary_tree_nodes(const binary_tree_t *tree);
+
 #endif
